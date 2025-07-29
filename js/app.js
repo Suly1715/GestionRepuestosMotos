@@ -97,6 +97,21 @@ function handleDelete(id) {
     }
 }
 
+function limpiarRepuestosInvalidos() {
+  let productos = getProducts();
+  const productosValidos = productos.filter(product =>
+    product.name &&
+    product.category &&
+    product.price !== undefined &&
+    product.price !== "undefined"
+  );
+
+  if (productosValidos.length !== productos.length) {
+    saveProducts(productosValidos);
+  }
+}
+
+limpiarRepuestosInvalidos(); 
 // Cargar repuestos al iniciar
 renderTable();
 
